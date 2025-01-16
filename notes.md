@@ -13,9 +13,9 @@ As part of `Deliverable ⓵ Development deployment: JWT Pizza`, start up the app
 | Verify pizza                                        |    delivery.tsx    |[POST] /api/order/verify|     *none*   |
 | View profile page                                   | dinerDashboard.tsx |  [GET] /api/order |SELECT id, franchiseId, storeId, date FROM dinerOrder WHERE dinerId=? LIMIT <br/> SELECT id, menuId, description, price FROM orderItem WHERE orderId=?|
 | View franchise<br/>(as diner)                       |franchiseDashboard.tsx|[GET] /api/franchise/:userId|SELECT objectId FROM userRole WHERE role='franchisee' AND userId=?|
-| Logout                                              |                    |                   |              |
-| View About page                                     |                    |                   |              |
-| View History page                                   |                    |                   |              |
+| Logout                                              |      logout.tsx    |[DELETE] /api/auth |DELETE FROM auth WHERE token=?|
+| View About page                                     |      about.tsx     |      *none*       |    *none*    |
+| View History page                                   |    history.tsx     |      *none*       |    *none*    |
 | Login as franchisee<br/>(f@jwt.com, pw: franchisee) |                    |                   |              |
 | View franchise<br/>(as franchisee)                  |                    |                   |              |
 | Create a store                                      |                    |                   |              |
