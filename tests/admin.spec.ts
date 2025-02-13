@@ -63,14 +63,25 @@ test("login", async ({ page }) => {
 
   await page.getByRole("link", { name: "Admin" }).click();
 
-  await page.getByText("Mama Ricci's kitchen").click();
-  await page
-    .getByRole("columnheader", { name: "Franchise", exact: true })
-    .click();
-  await page.getByRole("cell", { name: "Alice, Bobby" }).click();
-  await page.getByRole("cell", { name: "Downtown Store" }).click();
+  await expect(page.getByRole("heading")).toContainText("Mama Ricci's kitchen");
+  await expect(page.locator("thead")).toContainText("Franchise");
+  await expect(page.getByRole("table")).toContainText("Downtown Store");
+  await expect(page.getByRole("table")).toContainText("Charlie");
+  await expect(page.getByRole("table")).toContainText("Mama Ricci Suburbs");
   await expect(
     page.getByRole("row", { name: "Uptown Store ₿ Close" }).getByRole("button")
   ).toBeVisible();
-  await page.getByRole("cell", { name: "Mama Ricci Suburbs" }).click();
+  await page
+    .getByRole("row", { name: "Uptown Store ₿ Close" })
+    .getByRole("button")
+    .click();
+  await page.getByRole("button", { name: "Cancel" }).click();
+  await page.getByText("Mama Ricci's kitchen").click();
+  await expect(page.locator("thead")).toContainText("Franchise");
+  await expect(page.getByRole("table")).toContainText("Downtown Store");
+  await expect(page.getByRole("table")).toContainText("Charlie");
+  await expect(page.getByRole("table")).toContainText("Mama Ricci Suburbs");
+  await expect(
+    page.getByRole("row", { name: "Uptown Store ₿ Close" }).getByRole("button")
+  ).toBeVisible();
 });
