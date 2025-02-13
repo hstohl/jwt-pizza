@@ -53,7 +53,7 @@ test("login", async ({ page }) => {
       expect(route.request().postDataJSON()).toMatchObject(loginReq);
       await route.fulfill({ json: loginRes });
     } else if (route.request().method() == "DELETE") {
-      // expect(route.request().headers()["Authorization"]).toBe("Bearer abcdef");
+      //expect(route.request().headers()["Authorization"]).toBe("Bearer abcdef");
       const logoutRes = { message: "logout successful" };
       await route.fulfill({ json: logoutRes });
     } else {
@@ -71,7 +71,7 @@ test("login", async ({ page }) => {
   await page.getByRole("button", { name: "Login" }).click();
   await expect(page.getByRole("link", { name: "Register" })).not.toBeVisible();
   await expect(page.locator("#navbar-dark")).toContainText("Logout");
-  await expect(page.getByLabel("Global")).toContainText("name"); //it'll be chinese so change that
+  await expect(page.getByLabel("Global")).toContainText("KC");
   await page.getByRole("link", { name: "Logout" }).click();
   await expect(page.getByRole("link", { name: "Register" })).toBeVisible();
 });

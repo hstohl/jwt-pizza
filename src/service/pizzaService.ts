@@ -1,12 +1,16 @@
 enum Role {
-  Diner = 'diner',
-  Franchisee = 'franchisee',
-  Admin = 'admin',
+  Diner = "diner",
+  Franchisee = "franchisee",
+  Admin = "admin",
 }
 
 namespace Role {
   export function isRole(user: User | null, role: Role): boolean {
-    return user != null && Array.isArray(user.roles) && !!user.roles.find((r) => r.role === role);
+    return (
+      user != null &&
+      Array.isArray(user.roles) &&
+      !!user.roles.find((r) => r.role === role)
+    );
   }
 }
 
@@ -107,4 +111,19 @@ interface PizzaService {
   docs(docType: string): Promise<Endpoints>;
 }
 
-export { Role, PizzaService, User, Menu, Pizza, OrderHistory, Order, Franchise, Store, OrderItem, Endpoint, Endpoints, OrderResponse, JWTPayload };
+export {
+  Role,
+  PizzaService,
+  User,
+  Menu,
+  Pizza,
+  OrderHistory,
+  Order,
+  Franchise,
+  Store,
+  OrderItem,
+  Endpoint,
+  Endpoints,
+  OrderResponse,
+  JWTPayload,
+};
