@@ -66,6 +66,34 @@ test("menu page", async ({ page }) => {
     });
   });
 
+  await page.route("*/**/api/auth", async (route) => {
+    if (route.request().method() === "PUT") {
+      const loginReq = { email: "d@jwt.com", password: "a" };
+      const loginRes = {
+        user: {
+          id: 3,
+          name: "Kai Chen",
+          email: "d@jwt.com",
+          roles: [{ role: "diner" }],
+        },
+        token: "abcdef",
+      };
+
+      expect(route.request().postDataJSON()).toMatchObject(loginReq);
+      await route.fulfill({ json: loginRes });
+    } else {
+      fail("unexpected request");
+    }
+  });
+
+  await page.goto("/");
+  await page.getByRole("link", { name: "Login" }).click();
+  await page.getByRole("textbox", { name: "Email address" }).click();
+  await page.getByRole("textbox", { name: "Email address" }).fill("d@jwt.com");
+  await page.getByRole("textbox", { name: "Password" }).click();
+  await page.getByRole("textbox", { name: "Password" }).fill("a");
+  await page.getByRole("button", { name: "Login" }).click();
+
   await page.goto("http://localhost:5173/menu", {
     waitUntil: "domcontentloaded",
   });
@@ -88,4 +116,13 @@ test("menu page", async ({ page }) => {
   await expect(page.locator("h2")).toContainText("Awesome is a click away");
   await expect(page.locator("select")).toContainText("Downtown Pizza");
   await expect(page.locator("form")).toContainText("Margherita");
+
+  await page.getByRole("combobox").selectOption("101");
+  await page
+    .getByRole("link", { name: "Image Description Margherita" })
+    .click();
+  await expect(page.locator("form")).toContainText("Selected pizzas: 1");
+  await page.getByRole("button", { name: "Checkout" }).click();
+  await expect(page.getByRole("heading")).toContainText("So worth it");
+  await expect(page.getByRole("main")).toContainText("Pay now");
 });
