@@ -4,9 +4,7 @@ import { test, expect } from "playwright-test-coverage";
 test("order page", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("link", { name: "Order" }).click();
-  await expect(page.getByRole("heading")).toContainText(
-    "Awesome is a click away"
-  );
+  await page.getByText("Awesome is a click away").click();
 });
 
 test("menu page logged in then cancel", async ({ page }) => {

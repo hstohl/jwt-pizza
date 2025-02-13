@@ -123,8 +123,6 @@ test("diner dashboard no orders", async ({ page }) => {
 
 test("diner dashboard", async ({ page }) => {
   await page.route("http://localhost:3000/api/order", async (route) => {
-    console.log("Intercepting request to /api/order"); // Debugging
-
     const mockOrdersResponse = {
       orders: [
         {
