@@ -36,6 +36,18 @@ test("history page", async ({ page }) => {
   await expect(page.getByRole("main")).toContainText("Mama Rucci, my my");
 });
 
+test("docs page", async ({ page }) => {
+  await page.goto("/docs/factory");
+  await expect(page.getByRole("main")).toContainText("JWT Pizza API");
+  await expect(page.getByText("🔐 [POST] /api/orderCreate a")).toBeVisible();
+  await expect(page.getByRole("main")).toContainText(
+    '{ "keys": [ { "kty": "RSA", "kid": "KID here", "n": "Key value here", "e": "AQAB" } ] }'
+  );
+  await expect(page.getByRole("main")).toContainText(
+    "[GET] /api/support/:vendorToken/report/:fixCode"
+  );
+});
+
 test("login", async ({ page }) => {
   await page.route("*/**/api/auth", async (route) => {
     if (route.request().method() == "PUT") {
