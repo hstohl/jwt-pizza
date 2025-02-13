@@ -71,12 +71,49 @@ test("login", async ({ page }) => {
   await expect(
     page.getByRole("row", { name: "Uptown Store ₿ Close" }).getByRole("button")
   ).toBeVisible();
+
   await page
     .getByRole("row", { name: "Uptown Store ₿ Close" })
     .getByRole("button")
     .click();
+  await expect(page.getByRole("heading")).toContainText("Sorry to see you go");
+  await expect(page.getByRole("main")).toContainText(
+    "Are you sure you want to close the Mama Ricci Downtown store Uptown Store ? This cannot be restored. All outstanding revenue will not be refunded."
+  );
+  await expect(page.getByRole("button", { name: "Close" })).toBeVisible();
   await page.getByRole("button", { name: "Cancel" }).click();
-  await page.getByText("Mama Ricci's kitchen").click();
+  await expect(page.getByRole("heading")).toContainText("Mama Ricci's kitchen");
+  await expect(page.locator("thead")).toContainText("Franchise");
+  await expect(page.getByRole("table")).toContainText("Downtown Store");
+  await expect(page.getByRole("table")).toContainText("Charlie");
+  await expect(page.getByRole("table")).toContainText("Mama Ricci Suburbs");
+  await expect(
+    page.getByRole("row", { name: "Uptown Store ₿ Close" }).getByRole("button")
+  ).toBeVisible();
+
+  await page
+    .getByRole("row", { name: "Mama Ricci Downtown Alice," })
+    .getByRole("button")
+    .click();
+  await expect(page.getByRole("main")).toContainText(
+    "Are you sure you want to close the Mama Ricci Downtown franchise? This will close all associated stores and cannot be restored. All outstanding revenue will not be refunded."
+  );
+  await expect(page.getByRole("button", { name: "Close" })).toBeVisible();
+  await page.getByRole("button", { name: "Cancel" }).click();
+  await expect(page.getByRole("heading")).toContainText("Mama Ricci's kitchen");
+  await expect(page.locator("thead")).toContainText("Franchise");
+  await expect(page.getByRole("table")).toContainText("Downtown Store");
+  await expect(page.getByRole("table")).toContainText("Charlie");
+  await expect(page.getByRole("table")).toContainText("Mama Ricci Suburbs");
+  await expect(
+    page.getByRole("row", { name: "Uptown Store ₿ Close" }).getByRole("button")
+  ).toBeVisible();
+
+  await page.getByRole("button", { name: "Add Franchise" }).click();
+  await expect(page.getByRole("heading")).toContainText("Create franchise");
+  await expect(page.getByRole("button", { name: "Create" })).toBeVisible();
+  await page.getByRole("button", { name: "Cancel" }).click();
+  await expect(page.getByRole("heading")).toContainText("Mama Ricci's kitchen");
   await expect(page.locator("thead")).toContainText("Franchise");
   await expect(page.getByRole("table")).toContainText("Downtown Store");
   await expect(page.getByRole("table")).toContainText("Charlie");
