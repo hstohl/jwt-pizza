@@ -134,33 +134,36 @@ test("diner dashboard no orders", async ({ page }) => {
 });
 
 test("diner dashboard", async ({ page }) => {
-  await page.route("http://localhost:3000/api/order", async (route) => {
-    const mockOrdersResponse = {
-      orders: [
-        {
-          id: "12345",
-          items: [
-            { menuId: 1, description: "Margherita Pizza", price: 9.99 },
-            { menuId: 2, description: "Pepperoni Pizza", price: 11.99 },
-          ],
-          date: new Date("2025-02-10T18:30:00Z").toISOString(),
-        },
-        {
-          id: "67890",
-          items: [
-            { menuId: 3, description: "BBQ Chicken Pizza", price: 12.99 },
-          ],
-          date: new Date("2025-02-08T14:15:00Z").toISOString(),
-        },
-      ],
-    };
+  await page.route(
+    "http://pizza-service.hudson-stohl.click/api/order",
+    async (route) => {
+      const mockOrdersResponse = {
+        orders: [
+          {
+            id: "12345",
+            items: [
+              { menuId: 1, description: "Margherita Pizza", price: 9.99 },
+              { menuId: 2, description: "Pepperoni Pizza", price: 11.99 },
+            ],
+            date: new Date("2025-02-10T18:30:00Z").toISOString(),
+          },
+          {
+            id: "67890",
+            items: [
+              { menuId: 3, description: "BBQ Chicken Pizza", price: 12.99 },
+            ],
+            date: new Date("2025-02-08T14:15:00Z").toISOString(),
+          },
+        ],
+      };
 
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(mockOrdersResponse),
-    });
-  });
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mockOrdersResponse),
+      });
+    }
+  );
 
   await page.route("*/**/api/auth", async (route) => {
     if (route.request().method() == "PUT") {

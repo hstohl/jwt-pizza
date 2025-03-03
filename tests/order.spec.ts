@@ -2,61 +2,67 @@ import { fail } from "assert";
 import { test, expect } from "playwright-test-coverage";
 
 test("order pizza", async ({ page }) => {
-  await page.route("http://localhost:3000/api/order/menu", async (route) => {
-    const mockMenuResponse = [
-      {
-        id: 1,
-        title: "Margherita",
-        description: "Tomato, Mozzarella, Basil",
-        price: 9.99,
-        image: "margherita.jpg",
-      },
-      {
-        id: 2,
-        title: "Pepperoni",
-        description: "Tomato, Mozzarella, Pepperoni",
-        price: 11.99,
-        image: "pepperoni.jpg",
-      },
-      {
-        id: 3,
-        title: "BBQ Chicken",
-        description: "BBQ Sauce, Chicken, Red Onion",
-        price: 12.99,
-        image: "bbq.jpg",
-      },
-    ];
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(mockMenuResponse),
-    });
-  });
+  await page.route(
+    "http://pizza-service.hudson-stohl.click/api/order/menu",
+    async (route) => {
+      const mockMenuResponse = [
+        {
+          id: 1,
+          title: "Margherita",
+          description: "Tomato, Mozzarella, Basil",
+          price: 9.99,
+          image: "margherita.jpg",
+        },
+        {
+          id: 2,
+          title: "Pepperoni",
+          description: "Tomato, Mozzarella, Pepperoni",
+          price: 11.99,
+          image: "pepperoni.jpg",
+        },
+        {
+          id: 3,
+          title: "BBQ Chicken",
+          description: "BBQ Sauce, Chicken, Red Onion",
+          price: 12.99,
+          image: "bbq.jpg",
+        },
+      ];
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mockMenuResponse),
+      });
+    }
+  );
 
-  await page.route("http://localhost:3000/api/franchise", async (route) => {
-    const mockFranchiseResponse = [
-      {
-        id: "1",
-        name: "Pizza Palace",
-        stores: [{ id: "101", name: "Downtown Pizza" }],
-      },
-      {
-        id: "2",
-        name: "Pasta & Pizza",
-        stores: [{ id: "102", name: "Uptown Pizza" }],
-      },
-      {
-        id: "3",
-        name: "Italiano Express",
-        stores: [{ id: "103", name: "Bay Area Pizza" }],
-      },
-    ];
-    await route.fulfill({
-      status: 200,
-      contentType: "application/json",
-      body: JSON.stringify(mockFranchiseResponse),
-    });
-  });
+  await page.route(
+    "http://pizza-service.hudson-stohl.click/api/franchise",
+    async (route) => {
+      const mockFranchiseResponse = [
+        {
+          id: "1",
+          name: "Pizza Palace",
+          stores: [{ id: "101", name: "Downtown Pizza" }],
+        },
+        {
+          id: "2",
+          name: "Pasta & Pizza",
+          stores: [{ id: "102", name: "Uptown Pizza" }],
+        },
+        {
+          id: "3",
+          name: "Italiano Express",
+          stores: [{ id: "103", name: "Bay Area Pizza" }],
+        },
+      ];
+      await route.fulfill({
+        status: 200,
+        contentType: "application/json",
+        body: JSON.stringify(mockFranchiseResponse),
+      });
+    }
+  );
 
   await page.route("*/**/api/auth", async (route) => {
     if (route.request().method() === "PUT") {
@@ -125,12 +131,16 @@ test("order pizza", async ({ page }) => {
   await page.getByRole("button", { name: "Order now" }).click();
 
   const menuData = await page.evaluate(async () => {
-    const response = await fetch("http://localhost:3000/api/order/menu");
+    const response = await fetch(
+      "http://pizza-service.hudson-stohl.click/api/order/menu"
+    );
     return response.json();
   });
 
   const franchiseData = await page.evaluate(async () => {
-    const response = await fetch("http://localhost:3000/api/franchise");
+    const response = await fetch(
+      "http://pizza-service.hudson-stohl.click/api/franchise"
+    );
     return response.json();
   });
 
