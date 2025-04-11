@@ -3,7 +3,7 @@
 ## Self Attack Report - Hudson Stohl
 
 | Item           | Result                                                  |
-| -------------- | ------------------------------------------------------- | --- |
+| -------------- | ------------------------------------------------------- |
 | Date           | April 11, 2025                                          |
 | Target         | pizza-service.hudson-stohl.click                        |
 | Classification | Security Misconfiguration                               |
@@ -35,7 +35,7 @@
 ## Hudson Stohl -> Mark Bird
 
 | Item           | Result                                                               |
-| -------------- | -------------------------------------------------------------------- | --- |
+| -------------- | -------------------------------------------------------------------- |
 | Date           | April 11, 2025                                                       |
 | Target         | pizza-service.mbird.click                                            |
 | Classification | Security Misconfiguration                                            |
