@@ -10,7 +10,7 @@
 | Severity       | 4                                                       |
 | Description    | Got the stack error trace from an unauthorized request. |
 | Images         | ![Stack Trace](stackTrace.png) <br/> Stack trace.       |
-| Corrections    | None                                                    | s   |
+| Corrections    |                                                         | s   |
 
 | Item           | Result                                                                               |
 | -------------- | ------------------------------------------------------------------------------------ |
@@ -20,7 +20,7 @@
 | Severity       | 4                                                                                    |
 | Description    | Got the database configuration that the database was pulling from api/docs.          |
 | Images         | ![DB Config Shown](dbConfigShowing.png) <br/> DB config given with no authorization. |
-| Corrections    | None                                                                                 |
+| Corrections    |                                                                                      |
 
 | Item           | Result                                                                 |
 | -------------- | ---------------------------------------------------------------------- |
