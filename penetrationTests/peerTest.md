@@ -1,6 +1,6 @@
-### Attack Record for Hudson Stohl and Mark Bird
+## Attack Record for Hudson Stohl and Mark Bird
 
-## Self Attack Report - Hudson Stohl
+### Self Attack Report - Hudson Stohl
 
 | Item           | Result                                                  |
 | -------------- | ------------------------------------------------------- |
@@ -32,7 +32,7 @@
 | Images         | ![Signed in as Admin](adminSuccess.png) <br/> Logged in as admin.      |
 | Corrections    | Changed admin password.                                                |
 
-## Hudson Stohl -> Mark Bird
+### Hudson Stohl -> Mark Bird
 
 | Item           | Result                                                               |
 | -------------- | -------------------------------------------------------------------- |
@@ -106,7 +106,7 @@
 | Info           | Default Credentials worked.                 |
 | Corrections    | Changed Default Credentials                 |
 
-## Mark Bird -> Hudson Stohl
+### Mark Bird -> Hudson Stohl
 
 | Item           | Result                                                                                                          |
 | -------------- | --------------------------------------------------------------------------------------------------------------- |
