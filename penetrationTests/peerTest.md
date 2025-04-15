@@ -1,16 +1,16 @@
-### Attack Record for Hudson Stohl and Mark Bird
+## Attack Record for Hudson Stohl and Mark Bird
 
-## Self Attack Report - Hudson Stohl
+### Self Attack Report - Hudson Stohl
 
 | Item           | Result                                                  |
-| -------------- | ------------------------------------------------------- | --- |
+| -------------- | ------------------------------------------------------- |
 | Date           | April 11, 2025                                          |
 | Target         | pizza-service.hudson-stohl.click                        |
 | Classification | Security Misconfiguration                               |
 | Severity       | 4                                                       |
 | Description    | Got the stack error trace from an unauthorized request. |
 | Images         | ![Stack Trace](stackTrace.png) <br/> Stack trace.       |
-| Corrections    | None                                                    | s   |
+| Corrections    |                                                         | s   |
 
 | Item           | Result                                                                               |
 | -------------- | ------------------------------------------------------------------------------------ |
@@ -20,7 +20,7 @@
 | Severity       | 4                                                                                    |
 | Description    | Got the database configuration that the database was pulling from api/docs.          |
 | Images         | ![DB Config Shown](dbConfigShowing.png) <br/> DB config given with no authorization. |
-| Corrections    | None                                                                                 |
+| Corrections    |                                                                                      |
 
 | Item           | Result                                                                 |
 | -------------- | ---------------------------------------------------------------------- |
@@ -32,10 +32,10 @@
 | Images         | ![Signed in as Admin](adminSuccess.png) <br/> Logged in as admin.      |
 | Corrections    | Changed admin password.                                                |
 
-## Hudson Stohl -> Mark Bird
+### Hudson Stohl -> Mark Bird
 
 | Item           | Result                                                               |
-| -------------- | -------------------------------------------------------------------- | --- |
+| -------------- | -------------------------------------------------------------------- |
 | Date           | April 11, 2025                                                       |
 | Target         | pizza-service.mbird.click                                            |
 | Classification | Security Misconfiguration                                            |
@@ -106,7 +106,7 @@
 | Info           | Default Credentials worked.                 |
 | Corrections    | Changed Default Credentials                 |
 
-## Mark Bird -> Hudson Stohl
+### Mark Bird -> Hudson Stohl
 
 | Item           | Result                                                                                                          |
 | -------------- | --------------------------------------------------------------------------------------------------------------- |
